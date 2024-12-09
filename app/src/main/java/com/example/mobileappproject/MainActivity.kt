@@ -20,7 +20,7 @@ import com.example.mobileappproject.ui.TodoListPage
 import com.example.mobileappproject.ui.theme.MobileAppProjectTheme
 import com.example.mobileappproject.viewmodels.AlarmViewModel
 import com.example.mobileappproject.viewmodels.UserViewModel
-import com.example.recipeapp.ui.RecipeManagementScreen
+import com.example.mobileappproject.ui.RecipeManagementScreen
 import com.google.firebase.FirebaseApp
 import java.time.LocalDate
 

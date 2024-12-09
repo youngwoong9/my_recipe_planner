@@ -25,9 +25,16 @@ class UserRepository(private val firebaseDatabase: FirebaseDatabase) {
             .addOnSuccessListener { snapshot ->
                 val userState = snapshot.getValue(UserState::class.java)
                 if (userState != null) {
+                    // 사용자 데이터가 있으면 상태 업데이트
                     onSuccess(userState)
                 } else {
-                    onFailure("User data not found")
+                    // 사용자 데이터가 없으면 기본 사용자 데이터 생성
+                    val defaultUserState = UserState(nickname = userId)
+                    saveUserData(defaultUserState, onSuccess = {
+                        onSuccess(defaultUserState) // 기본 데이터로 진행
+                    }, onFailure = {
+                        onFailure("Failed to save default user data")
+                    })
                 }
             }
             .addOnFailureListener { exception ->

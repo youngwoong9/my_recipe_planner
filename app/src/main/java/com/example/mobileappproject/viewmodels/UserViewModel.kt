@@ -152,9 +152,10 @@ class UserViewModel : ViewModel() {
         }
     }
 
-    // Firebase에서 사용자 데이터를 로드
+    // Firebase에서 사용자 데이터를 로드하는 함수
     private fun loadUserData(userId: String, onSuccess: (UserState) -> Unit = {}, onFailure: (String) -> Unit = {}) {
         userRepository.loadUserData(userId, onSuccess = { userState ->
+            // 사용자 데이터가 있으면 상태 업데이트
             _userStateFlow.value = userState
             onSuccess(userState)
         }, onFailure = { error ->
